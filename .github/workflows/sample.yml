@@ -19,4 +19,4 @@ jobs:
           pwd
           echo $GITHUB_ACTOR
           cd .github/workflows
-          jq ".deployable_users | any(. == $GITHUB_ACTOR)" ./deployable_users.json
+          jq '.deployable_users | any(. == '"$GITHUB_ACTOR")' ./deployable_users.json
