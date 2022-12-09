@@ -11,5 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - run: echo ${{ env.GITHUB_ACTOR }}
       - uses: actions/checkout@v3.0.0
       - run: echo 'Hello'
