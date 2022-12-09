@@ -39,7 +39,7 @@ jobs:
       - name: exit if the input environment is not supported
         run: |
           env=$INPUT_ENVIRONMENT
-          if ! [ $env = "dev" || $env = "staging" ];then
+          if ![ "$env" = "dev" || "$env" = "staging" ]; then
             echo "$env is not supported."
             exit 1
           fi
