@@ -15,7 +15,7 @@ on:
         required: true
         description: "environment"
         type: string
-
+    branches: ["main"]
 jobs:
   deploy:
     runs-on: ubuntu-latest
