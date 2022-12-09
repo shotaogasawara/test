@@ -6,7 +6,8 @@ on:
       service:
         required: true
         description: "deploy target service"
-        type: string
+        options:
+          - rezept
       revision:
         required: true
         description: "deploy revision"
@@ -14,7 +15,9 @@ on:
       environment:
         required: true
         description: "environment"
-        type: string
+        options:
+          - dev11
+          - staging
 
 jobs:
   deploy:
