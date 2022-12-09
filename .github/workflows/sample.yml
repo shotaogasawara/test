@@ -41,13 +41,6 @@ jobs:
             echo 'deployable_users.jsonに登録されてないユーザはデプロイできません'
             exit 1
           fi
-      - name: exit if the input environment is not supported
-        run: |
-          env=$INPUT_ENVIRONMENT
-          if ! [ "$env" = "dev" -o "$env" = "staging" ]; then
-            echo "$env is not supported."
-            exit 1
-          fi
       - name: notify slack
         run: |
           echo 'notify slack that the release process started.'
