@@ -15,7 +15,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3.0.0
-      - run: |
+      - name: exit if the actor is not a deployable user
+        run: |
           cd .github/workflows
           IS_DEPLOYABLE_USER=$(jq --arg ga $GITHUB_ACTOR '.deployable_users | any(. == $ga)' ./deployable_users.json)
-          [ $IS_DEPLOYABLE_USER != "true" ] && exit 1
+          if [ $IS_DEPLOYABLE_USER != "true" ]; then
+            echo 'deployable_users.jsonに登録されてないユーザはデプロイできません'
+            exit 1
+          fi
+      - name: notify slack
+        run: |
+          echo 'notify slack that the release process started.'
+      - name: start release workflow in AWS CodeBuild
+        run: |
+          echo 'start codebuild'
