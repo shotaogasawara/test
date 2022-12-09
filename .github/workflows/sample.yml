@@ -3,6 +3,9 @@ name: 'Deploy'
 on:
   workflow_dispatch:
 
+# この設定は作業ブランチであっても外しちゃだめです
+if: github.ref == 'refs/heads/main'
+
 jobs:
   deploy:
     environment:
