@@ -7,6 +7,14 @@ on:
         required: true
         description: "deploy target service"
         type: string
+      revision:
+        required: true
+        description: "deploy revision"
+        type: string
+      environment:
+        required: true
+        description: "environment"
+        type: string
 
 jobs:
   deploy:
