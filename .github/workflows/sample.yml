@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.0
       - run: |
-          pwd
-          echo $GITHUB_ACTOR
           cd .github/workflows
-          jq --arg ga $GITHUB_ACTOR '.deployable_users | any(. == $ga)' ./deployable_users.json
+          IS_DEPLOYABLE_USER=$(jq --arg ga $GITHUB_ACTOR '.deployable_users | any(. == $ga)' ./deployable_users.json)
+          [ $IS_DEPLOYABLE_USER != "true" ] && exit 1
+          echo 'ここにはきてほしくない'
