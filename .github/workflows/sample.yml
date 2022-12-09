@@ -7,7 +7,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # この設定は作業ブランチであっても外しちゃだめです
+    # deploy workflowの処理はmainブランチにマージされたものしか利用できないようにしています
+    # これは本来environmentsを利用してreviewステップを入れたいが契約がGithub Enterpriseではないのでそれができず、仕方なしのworkaroundです
+    # ref https://stackoverflow.com/questions/69260199/is-there-a-way-to-restrict-what-branch-an-action-can-be-run-on
+    # 事故を起こさないためにもこの設定は作業ブランチ上でも外さないようお願いします
     if: github.ref == 'refs/heads/main'
 
     steps:
