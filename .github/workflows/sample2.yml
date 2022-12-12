@@ -35,6 +35,6 @@ jobs:
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: $GITHUB_ACTOR
+          approvers: ${{ env.GITHUB_ACTOR }}
       - name: Deploy to production
         run: echo deploying
