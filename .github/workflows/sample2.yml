@@ -40,6 +40,6 @@ jobs:
         with:
           secret: ${{ github.TOKEN }}
           exclude-workflow-initiator-as-approver: false
-          issue-title:
-      - name: Deploy to production
+          issue-title: "【${{ inputs.environment }}】manual approval of ${{ inputs.service }} release with revision ${{ inputs.revision }}"
+      - name: Deploy to ${{ inputs.environment }} ${{ inputs.service }} with ${{ inputs.revision }}
         run: echo deploying
