@@ -1,0 +1,40 @@
+name: 'Deploy'
+
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        required: true
+        description: "deploy target service"
+        type: choice
+        options:
+          - rezept
+      revision:
+        required: true
+        description: "deploy revision"
+        type: string
+      environment:
+        required: true
+        description: "environment"
+        type: choice
+        options:
+          - dev11
+          - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # deploy workflowの処理はmainブランチにマージされたものしか利用できないようにしています
+    # これは本来environmentsを利用してreviewステップを入れたいが契約がGithub Enterpriseではないのでそれができず、仕方なしのworkaroundです
+    # ref https://stackoverflow.com/questions/69260199/is-there-a-way-to-restrict-what-branch-an-action-can-be-run-on
+    # 事故を起こさないためにもこの設定は作業ブランチ上でも外さないようお願いします
+    # if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: $GITHUB_ACTOR
+      - name: Deploy to production
+        run: echo deploying
