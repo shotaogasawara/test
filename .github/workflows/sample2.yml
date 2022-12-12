@@ -10,7 +10,7 @@ on:
         options:
           - rezept
       revision:
-        required: true
+        required: false
         description: "deploy revision"
         type: string
       environment:
