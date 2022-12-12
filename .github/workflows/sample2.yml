@@ -1,4 +1,4 @@
-name: 'Deploy'
+name: 'manual approval'
 
 on:
   workflow_dispatch:
